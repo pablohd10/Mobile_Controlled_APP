@@ -19,6 +19,18 @@ header {
     align-items: center;
 }
 
+.boton_salida {
+    height: auto;
+    width: auto;
+    background-color: #cccccc;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-in-out;
+    box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.2);
+    font-size: larger;
+}
+
 /* Código de los botones de selección */
 
 .seleccion_modo {
@@ -34,14 +46,31 @@ header {
 }
 
 .boton_seleccion {
-    padding: 50px 80px;
-    margin: 0 0;
+    height: 15vh;
+    width: 80vw;
     background-color: #9b9b9b;
     border: none;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: all 0.2s ease-in-out;
     box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.2);
+    font-size: larger;
+}
+
+#comp_par{
+    background-color: rgb(255, 186, 186);
+}
+
+#simp_par{
+    background-color: rgb(255, 186, 186);
+}
+
+#comp_spar{
+    background-color: rgb(175, 255, 175);
+}
+
+#simp_spar{
+    background-color: rgb(175, 255, 175);
 }
 
 .boton_seleccion:hover {
@@ -79,6 +108,7 @@ header {
     width: 60vw;
     transform: rotate(-45deg);
     margin-left: 20vw;
+    
 
     display: grid;
     grid-template-columns: auto auto;
@@ -188,11 +218,12 @@ header {
 
 #boton_bus {
     background-color: #4CAF50;
-    color: white;
+    color: black;
     border: 1px solid #ccc;
     border-radius: 0 5px 5px 0;
     height: 44px;
     font-size: 16px;
+    font-weight: 700;
     cursor: pointer;
 }
 
@@ -241,6 +272,20 @@ header {
 .cola::-webkit-scrollbar-thumb {
     background-color: white;
     border-radius: 50px;
+}
+
+.div_resultado {
+    height: auto;
+    width: 78vw;
+    margin-top: 1vh;
+    z-index: 1000;
+
+    background: rgba(255, 255, 255, 0.57);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 1);
 }
 
 /* Código para la pantalla del modo simple */

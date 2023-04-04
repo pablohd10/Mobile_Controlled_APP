@@ -20,17 +20,17 @@
     <!-- Esta es la sección de la seleccion del modo del mando
     dependiendo de esto el mando tomará una forma u otra -->
     <div class="seleccion_modo" id="seleccion_modo">
-        <button class="boton_seleccion" id="comp_par" onclick="cambiarTitulo()">
-            <h3>Modo1</h3>
+        <button class="boton_seleccion" id="comp_par">
+            <h3>Complejo con control parental</h3>
         </button>
-        <button class="boton_seleccion" id="simp_par" onclick="cambiarTitulo()">
-            <h3>Modo2</h3>
+        <button class="boton_seleccion" id="simp_par">
+            <h3>Simple con control parental</h3>
         </button>
-        <button class="boton_seleccion" id="comp_spar" onclick="cambiarTitulo()">
-            <h3>Modo3</h3>
+        <button class="boton_seleccion" id="comp_spar">
+            <h3>Complejo sin control parental</h3>
         </button>
-        <button class="boton_seleccion" id="simp_spar" onclick="cambiarTitulo()">
-            <h3>Modo4</h3>
+        <button class="boton_seleccion" id="simp_spar">
+            <h3>Simple sin control parental</h3>
         </button>
     </div>
 
@@ -54,45 +54,12 @@
                 <input id="input_bus" type="text" placeholder="Buscar...">
                 <button id="boton_bus" type="submit">Buscar</button>
             </form>
+            <div class="div_resultado" id="resultado"></div>
         </div>
 
         <div class="cola">
-            <ul>
-                <li>
-                    <div class="cancion_nombre" id="c_1">
-                        <p>Counting Stars</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="cancion_nombre" id="c_2">
-                        <p>Apologize</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="cancion_nombre" id="c_3">
-                        <p>Let her go</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="cancion_nombre" id="c_4">
-                        <p>The devil doesn't bargain</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="cancion_nombre" id="c_16">
-                        <p>La Bachata</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="cancion_nombre" id="c_17">
-                        <p>Titi me preguntó</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="cancion_nombre" id="c_14">
-                        <p>Frio</p>
-                    </div>
-                </li>
+            <ul id="lista_cola">
+                
             </ul>
         </div>
 
@@ -114,6 +81,8 @@
 
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="js/archivo.js"></script>
     <script src="js/mando.js"></script>
 </body>
 
