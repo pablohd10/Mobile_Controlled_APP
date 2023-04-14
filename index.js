@@ -60,5 +60,33 @@ io.on('connection', (socket) => {
         io.emit('bajandoVol');
 
     });
+
+    // Señal para alternar play/pause
+    socket.on('a_server_play_pause', () => {
+
+        io.emit('a_reproductor_play_pause');
+
+    });
+
+    // Señal que envia el movimiento del puntero
+    socket.on('a_server_envio_posicion', (posicion) => {
+
+        io.emit('a_reproductor_envio_posicion', posicion);
+
+    });
+
+    // Señal para alternar play/pause
+    socket.on('a_server_click', () => {
+
+        io.emit('a_reproductor_click');
+
+    });
+    
+    // Señal para salir de la reproduccion de video
+    socket.on('a_server_salir', () => {
+
+        io.emit('a_reproductor_salir');
+
+    });
 });
 

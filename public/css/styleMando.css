@@ -57,19 +57,19 @@ header {
     font-size: larger;
 }
 
-#comp_par{
+#comp_par {
     background-color: rgb(255, 186, 186);
 }
 
-#simp_par{
+#simp_par {
     background-color: rgb(255, 186, 186);
 }
 
-#comp_spar{
+#comp_spar {
     background-color: rgb(175, 255, 175);
 }
 
-#simp_spar{
+#simp_spar {
     background-color: rgb(175, 255, 175);
 }
 
@@ -108,7 +108,7 @@ header {
     width: 60vw;
     transform: rotate(-45deg);
     margin-left: 20vw;
-    
+
 
     display: grid;
     grid-template-columns: auto auto;
@@ -196,6 +196,43 @@ header {
     border-radius: 100% 0 0 0;
 }
 
+.botones_control {
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.btn {
+    height: 50px;
+    width: 100px;
+
+    background: rgba(112, 112, 112, 1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(112, 112, 112, 1);
+}
+
+#puntero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    pointer-events: none;
+    /* Para evitar que el puntero capture eventos del usuario */
+    z-index: -1000000;
+    opacity: 0;
+}
+
 /* Código relacionado con el diseño de la barra de búsqueda */
 
 .busqueda {
@@ -280,6 +317,7 @@ header {
     margin-top: 1vh;
     z-index: 1000;
 
+
     background: rgba(255, 255, 255, 0.57);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -288,8 +326,13 @@ header {
     border: 1px solid rgba(255, 255, 255, 1);
 }
 
+.res_busqueda{
+    padding: 5px 0 5px 10px;
+    font-weight: 500;
+}
+
 /* Código para la pantalla del modo simple */
-.modo_simple{
+.modo_simple {
     margin: 0 0;
     height: 90vh;
     width: 100vw;
@@ -301,8 +344,8 @@ header {
 
 
 .botones_s {
-    height: 60vw;
-    width: 60vw;
+    height: 50vw;
+    width: 50vw;
     transform: rotate(-45deg);
     margin-left: -3vw;
 
@@ -390,4 +433,27 @@ header {
     -moz-border-radius: 0 100% 0 0;
     -webkit-border-radius: 0 100% 0 0;
     border-radius: 100% 0 0 0;
+}
+
+.botones_control_s{
+    margin-top: 120px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.btn_s {
+    height: 100px;
+    width: 100px;
+
+    background: rgba(112, 112, 112, 1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(112, 112, 112, 1);
 }

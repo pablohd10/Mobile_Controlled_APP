@@ -1,5 +1,7 @@
-const socket = io();
+$(".reproductor").hide();
+let rep = 0;
 
+const socket = io();
 // Obtenemos el elemento (en este caso, una imagen)
 const elements = document.querySelectorAll(".videos img");
 
@@ -40,7 +42,12 @@ for (let i = 0; i < elements.length; i++) {
 socket.on('cambioPelicula', (id) => {
     console.log("comprobacion main.js");
     console.log(id);
-    obtener_pelicula(id);
+    if (rep == 1) {
+        obtener_pelicula(id);
+    } else {
+        null
+    }
+    
 });
 
 
@@ -85,4 +92,98 @@ function bajarVolumen() {
 socket.on('bajandoVol', () => {
     console.log("bajando volumen");
     bajarVolumen();
+});
+
+function alternarPlayPause() {
+    const pelicula = document.getElementById("reproductor_video");
+    if (pelicula.paused) {
+        pelicula.play();
+    } else {
+        pelicula.pause();
+    }
+}
+
+socket.on('a_reproductor_play_pause', () => {
+    console.log("play pause");
+    if (rep == 1) {
+        alternarPlayPause();
+    } else {
+        null
+    }
+
+});
+
+
+/* let posX = window.innerWidth / 2; // Inicializar en el centro de la pantalla
+let posY = window.innerHeight / 2; // Inicializar en el centro de la pantalla */
+
+socket.on('a_reproductor_envio_posicion', (posicion) => {
+    /* console.log("Cambiando posicion");
+    console.log(posicion); */
+    let posX = window.innerWidth / 2; // Inicializar en el centro de la pantalla
+    let posY = window.innerHeight / 2; // Inicializar en el centro de la pantalla
+
+    const puntero = document.getElementById("puntero");
+
+    posX = posicion[0];
+    posY = posicion[1];
+
+    puntero.style.left = posX + "px";
+    puntero.style.top = posY + "px";
+    // Limitar la posición del puntero para que no se salga de la pantalla
+    posX = Math.max(0, Math.min(window.innerWidth, posX));
+    posY = Math.max(0, Math.min(window.innerHeight, posY));
+
+    puntero.style.left = posX + "px";
+    puntero.style.top = posY + "px";
+
+});
+
+
+function clickPuntero() {
+    const puntero = document.getElementById("puntero");
+    const posX = puntero.offsetLeft;
+    const posY = puntero.offsetTop;
+    const elementoBajoPuntero = document.elementFromPoint(posX, posY);
+    if (elementoBajoPuntero) {
+        elementoBajoPuntero.click();
+    }
+}
+
+socket.on('a_reproductor_click', () => {
+    console.log("click con puntero");
+    clickPuntero();
+});
+
+
+function reproducirVideo(id) {
+    $(".cuerpo").hide();
+    $("header").hide();
+    $(".reproductor").show();
+    rep = 1;
+    for (var i = 0; i < archivo.length; i++) {
+        if (archivo[i].id == id) {
+            document.getElementById("reproductor_video").poster = archivo[i].portada;
+            document.getElementById("reproductor_video").src = archivo[i].src;
+            document.getElementById("reproductor_video").load();
+            document.getElementById("reproductor_video").play();
+
+        } else {
+            null
+        }
+    }
+};
+
+function salirReproVideo() {
+    $(".cuerpo").show();
+    $("header").show();
+    $(".reproductor").hide();
+    rep = 0;
+
+    document.getElementById("reproductor_video").poster = "";
+    document.getElementById("reproductor_video").src = "";
+};
+
+socket.on('a_reproductor_salir', () => {
+    salirReproVideo();
 });

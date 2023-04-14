@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/stylePaginaPrincipal.css">
+    <link rel="shortcut icon" href="media/logo.ico" type="image/x-icon">
     <title>Inicio</title>
 </head>
 
@@ -25,39 +26,54 @@
 </header>
 
 <body>
-    <main class="main">
-        <h2>Bienvenido a Vidpro</h2>
-    </main>
+    <div class="cuerpo">
+        <main class="main">
+            <h2>Bienvenido a Vidpro</h2>
+        </main>
 
-    <div class="videos">
-        <img class="grid-item" id="video-1"
-            src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/1430A47DDD532CE6292009B3CF2080145C771904DF2F472021F2EC6075D0761C/scale?width=1200&aspectRatio=1.78&format=jpeg">
-        <img class="grid-item" id="video-2"
-            src="https://play-lh.googleusercontent.com/O9ZjQHquob9GjzNvjYI-BQQiKZvfwkLuCtk7qIQr4ID9bQSeZBQaqD15dsuJUoPkOKE">
-        <img class="grid-item" id="video-3" src="https://pics.filmaffinity.com/Gladiator-419643516-large.jpg">
-        <img class="grid-item" id="video-4"
-            src="https://image.cdn0.buscalibre.com/5b582f4a8863b512618b4568.__RS360x360__.jpg">
-        <img class="grid-item" id="video-5"
-            src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/1430A47DDD532CE6292009B3CF2080145C771904DF2F472021F2EC6075D0761C/scale?width=1200&aspectRatio=1.78&format=jpeg">
-        <img class="grid-item" id="video-6"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-wJhfeBK_hIaF8Yk5vkVXckHLgKP6XMiBWw&usqp=CAU">
-        <img class="grid-item" id="video-7"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ69oKCbdVb46L2Diigcl7n-Mgf-K6O6YIWHg&usqp=CAU">
-        <img class="grid-item" id="video-8"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHFppw0IHFKXdGmw4X7Kvv5OwAgr1PikwykA&usqp=CAU">
-        <img class="grid-item" id="video-9"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVIUvMMZjkur8-ghMbGVYSfqJ8BuVSD7N78w&usqp=CAU">
-        <img class="grid-item" id="video-10"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWqNpK41wJF9WxXHDYo3rnvelnXqBPpkIySw&usqp=CAU">
-        <img class="grid-item" id="video-11"
-            src="https://play-lh.googleusercontent.com/O9ZjQHquob9GjzNvjYI-BQQiKZvfwkLuCtk7qIQr4ID9bQSeZBQaqD15dsuJUoPkOKE">
-        <img class="grid-item" id="video-12" src="https://pics.filmaffinity.com/Gladiator-419643516-large.jpg">
+        <div class="contenedor_puntero">
+            <div id="puntero"></div>
+        </div>
+
+        <h1 class="titulos">Peliculas</h1>
+        <div class="videos" id="peliculas">
+            <img class="grid-item" id="p1" onclick="reproducirVideo('1')" src="media/portadas/titanic.png">
+            <img class="grid-item" id="p2" onclick="reproducirVideo('2')" src="media/portadas/fasst.png">
+            <img class="grid-item" id="p3" onclick="reproducirVideo('3')" src="media/portadas/avatar.png">
+            <img class="grid-item" id="p4" onclick="reproducirVideo('4')" src="media/portadas/mario.png">
+            <img class="grid-item" id="p5" onclick="reproducirVideo('5')" src="media/portadas/the_marvels.png">
+        </div>
+        <h1 class="titulos">Recetas</h1>
+        <div class="videos" id="recetas">
+            <img class="grid-item" id="r1" onclick="reproducirVideo('6')" src="media/portadas/alubias.PNG">
+            <img class="grid-item" id="r2" onclick="reproducirVideo('7')" src="media/portadas/arroz_leche.png">
+            <img class="grid-item" id="r3" onclick="reproducirVideo('8')" src="media/portadas/bocata_gines.PNG">
+            <img class="grid-item" id="r4" onclick="reproducirVideo('9')" src="media/portadas/pollo_curry.PNG">
+            <img class="grid-item" id="r5" onclick="reproducirVideo('10')" src="media/portadas/spaguettis.PNG">
+        </div>
+        <h1 class="titulos">Deportes</h1>
+        <div class="videos" id="deportes">
+            <img class="grid-item" id="d1" onclick="reproducirVideo('11')" src="media/portadas/abdominales.PNG">
+            <img class="grid-item" id="d2" onclick="reproducirVideo('12')" src="media/portadas/biceps.PNG">
+            <img class="grid-item" id="d3" onclick="reproducirVideo('13')" src="media/portadas/cardio.PNG">
+            <img class="grid-item" id="d4" onclick="reproducirVideo('14')" src="media/portadas/front_lever.PNG">
+            <img class="grid-item" id="d5" onclick="reproducirVideo('15')" src="media/portadas/pilates.PNG">
+        </div>
+        <h1 class="titulos">Noticias</h1>
+        <div class="videos" id="noticias">
+            <img class="grid-item" id="n1" onclick="reproducirVideo('16')" src="media/portadas/27_Julio.PNG">
+            <img class="grid-item" id="n2" onclick="reproducirVideo('17')" src="media/portadas/cementerio_clandestino.PNG">
+            <img class="grid-item" id="n3" onclick="reproducirVideo('18')" src="media/portadas/edificio_abandonado.PNG">
+            <img class="grid-item" id="n4" onclick="reproducirVideo('19')" src="media/portadas/incendio.PNG">
+            <img class="grid-item" id="n5" onclick="reproducirVideo('20')" src="media/portadas/putin.PNG">
+        </div>
     </div>
 
-    
+
     <div class="reproductor" id="reproductor_principal">
         <!--Div que hace referencia a la pantalla de reproducción de peliculas-->
-        <video id="reproductor_video" src="media/videos/titanic.mp4" poster="media/portadas/titanic.png" controls="controls"></video>
+        <video id="reproductor_video" src="media/videos/titanic.mp4" poster="media/portadas/titanic.png"
+            controls="controls"></video>
     </div>
 
 
