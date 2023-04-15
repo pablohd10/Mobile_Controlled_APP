@@ -12,6 +12,7 @@
 
 <body>
     <header>
+        <!-- Header con el título que se modificará dependiendo del modo que se escoja y con el boton para salir del modo seleccionado -->
         <div class="titulo" id="titulo">
             <h1 id="h1_titulo">Bienvenido a VidPro</h1>
         </div>
@@ -35,50 +36,66 @@
         </button>
     </div>
 
-
+    <!-- Div con todo el contenido del modo complejo -->
     <div class="modo_complejo">
 
-        <div id="puntero"></div>
+        <div id="puntero"><!-- Div necesario para que el puntero funcione, este establecerá su posición --></div>
 
-        <div id="margen"></div>
+        <div id="margen"><!-- Margen de la parte de arriba de los botones --></div>
         <div class="botones">
-            <div class="subir_vol" id="seccion1"><img class="img_sec" id="img_sec1" src="media/mas.png" alt="boton subir volumen"></div>
-            <div class="sig_video" id="seccion2"><img class="img_sec" id="img_sec2" src="media/siguiente.png" alt="boton siguiente"></div>
-            <div class="bajar_vol" id="seccion3"><img class="img_sec" id="img_sec3" src="media/menos.png" alt="boton bajar volumen"></div>
-            <div class="ant_video" id="seccion4"><img class="img_sec" id="img_sec4" src="media/anterior.png" alt="boton anterior"></div>
+            <!-- Div con el circulo de botones -->
+            <div class="subir_vol" id="seccion1"><img class="img_sec" id="img_sec1" src="media/mas.png"
+                    alt="boton subir volumen"></div>
+            <div class="sig_video" id="seccion2"><img class="img_sec" id="img_sec2" src="media/siguiente.png"
+                    alt="boton siguiente"></div>
+            <div class="bajar_vol" id="seccion3"><img class="img_sec" id="img_sec3" src="media/menos.png"
+                    alt="boton bajar volumen"></div>
+            <div class="ant_video" id="seccion4"><img class="img_sec" id="img_sec4" src="media/anterior.png"
+                    alt="boton anterior"></div>
         </div>
         <div class="botones_control">
+            <!-- Div con los botones para salir de la pantalla completa, play/pause y el click del puntero -->
             <button class="btn" id="btn_salir"><img src="media/salir.png" alt="Boton salir reproducción video"></button>
             <button class="btn" id="btn_play_pause"><img src="media/play_pause.png"
                     alt="Boton play/pause video"></button>
             <button class="btn" id="btn_click"><img src="media/click.png" alt="Boton click del puntero"></button>
         </div>
 
+        <!-- Div para todo lo relacionado con la busqueda, tanto la barra como el espacio donde se mostrarán los resultados -->
         <div class="busqueda">
-            <form>
+            <div class="flex_busqueda">
                 <input id="input_bus" type="text" placeholder="Buscar...">
                 <button id="boton_bus" type="submit">Buscar</button>
-            </form>
+            </div>
             <div class="div_resultado" id="resultado"></div>
         </div>
 
+        <!-- Div donde se mostrará la cola de videos -->
         <div class="cola" id="lista_cola">
         </div>
 
     </div>
 
+    <!-- Div donde se establecerá todo lo que tiene que ver con el modo simple -->
     <div class="modo_simple">
 
-        <div id="margen_s"></div>
+        <div id="margen_s"><!-- Margen que se deja en la parte de arriba de los botones --></div>
         <div class="botones_s">
-            <div class="subir_vol" id="seccion1_s"><img class="img_sec_s" id="img_sec1_s" src="media/mas.png" alt=""></div>
-            <div class="sig_video" id="seccion2_s"><img class="img_sec_s" id="img_sec2_s" src="media/siguiente.png" alt=""></div>
-            <div class="bajar_vol" id="seccion3_s"><img class="img_sec_s" id="img_sec3_s" src="media/menos.png" alt=""></div>
-            <div class="ant_video" id="seccion4_s"><img class="img_sec_s" id="img_sec4_s" src="media/anterior.png" alt=""></div>
+            <!-- Div con el circulo de botones -->
+            <div class="subir_vol" id="seccion1_s"><img class="img_sec_s" id="img_sec1_s" src="media/mas.png" alt="">
+            </div>
+            <div class="sig_video" id="seccion2_s"><img class="img_sec_s" id="img_sec2_s" src="media/siguiente.png"
+                    alt=""></div>
+            <div class="bajar_vol" id="seccion3_s"><img class="img_sec_s" id="img_sec3_s" src="media/menos.png" alt="">
+            </div>
+            <div class="ant_video" id="seccion4_s"><img class="img_sec_s" id="img_sec4_s" src="media/anterior.png"
+                    alt=""></div>
         </div>
 
         <div class="botones_control_s">
-            <button class="btn_s" id="btn_salir_s"><img src="media/salir.png" alt="Boton salir reproducción video"></button>
+            <!-- Div de los tres botones de abajo -->
+            <button class="btn_s" id="btn_salir_s"><img src="media/salir.png"
+                    alt="Boton salir reproducción video"></button>
             <button class="btn_s" id="btn_play_pause_s"><img src="media/play_pause.png"
                     alt="Boton play/pause video"></button>
             <button class="btn_s" id="btn_click_s"><img src="media/click.png" alt="Boton click del puntero"></button>

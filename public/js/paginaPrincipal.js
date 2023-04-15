@@ -1,7 +1,6 @@
 $(".reproductor").hide();
 let rep = 0;
 
-const socket = io();
 // Obtenemos el elemento (en este caso, una imagen)
 const elements = document.querySelectorAll(".videos img");
 
@@ -39,22 +38,10 @@ for (let i = 0; i < elements.length; i++) {
 
 
 
-socket.on('cambioPelicula', (id) => {
-    console.log("comprobacion main.js");
-    console.log(id);
-    if (rep == 1) {
-        obtener_pelicula(id);
-    } else {
-        null
-    }
-    
-});
-
-
+// Función que se encarga de obtener la información de la película que se quiere reproducir
 function obtener_pelicula(id) {
     for (var i = 0; i < archivo.length; i++) {
         if (archivo[i].id == id) {
-            console.log("obteniendo pelicula")
             document.getElementById("reproductor_video").src = archivo[i].src;
             document.getElementById("reproductor_video").poster = archivo[i].portada;
             document.getElementById("reproductor_video").load();
@@ -65,7 +52,28 @@ function obtener_pelicula(id) {
         }
     }
 };
+// Función que recibe la orden de cambiar de película. Compueba que si la cola tiene contenido y en ese caso repoducirá lo que  hay en la cola.
+socket.on('cambioPelicula', (id) => {
+    if (rep == 1) {
+        if (cola.length > 0) {
+            console.log("arriba");
+            let sig = cola[0][0];
+            console.log(sig);
+            obtener_pelicula(sig);
+            socket.emit('a_server_borrar_cola');
+            console.log(cola);
+        } else {
+            console.log("abajo");
+            obtener_pelicula(id);
+        }
+    } else {
+        null
+    }
 
+});
+
+
+// Función que se encarga de subir el volumen dentro del reproductor de video
 function subirVolumen() {
     const pelicula = document.getElementById("reproductor_video");
     if (pelicula.volume == 1 || pelicula.volume > 0.9) {
@@ -74,12 +82,12 @@ function subirVolumen() {
         pelicula.volume += 0.1; // Subir volumen un 10%
     }
 }
-
+// Recibimos la orden de subir el volumen del mando
 socket.on('subiendoVol', () => {
-    console.log("subiendo volumen");
     subirVolumen();
 });
 
+// Función que se encarga de bajar el volumen dentro del reproductor de video
 function bajarVolumen() {
     const pelicula = document.getElementById("reproductor_video");
     if (pelicula.volume == 0 || pelicula.volume < 0.1) {
@@ -88,12 +96,13 @@ function bajarVolumen() {
         pelicula.volume -= 0.1; // Subir volumen un 10%
     }
 }
-
+// Recibimos la orden de bajar el volumen del mando
 socket.on('bajandoVol', () => {
-    console.log("bajando volumen");
     bajarVolumen();
 });
 
+
+// Función que ejecutará el cambio de Play a Pause y viceversa dento del reproductor
 function alternarPlayPause() {
     const pelicula = document.getElementById("reproductor_video");
     if (pelicula.paused) {
@@ -102,9 +111,8 @@ function alternarPlayPause() {
         pelicula.pause();
     }
 }
-
+// Recibimos la orden de play o pause del mando
 socket.on('a_reproductor_play_pause', () => {
-    console.log("play pause");
     if (rep == 1) {
         alternarPlayPause();
     } else {
@@ -114,19 +122,15 @@ socket.on('a_reproductor_play_pause', () => {
 });
 
 
-/* let posX = window.innerWidth / 2; // Inicializar en el centro de la pantalla
-let posY = window.innerHeight / 2; // Inicializar en el centro de la pantalla */
-
+// Recibimos la posicion/desplazamiento del mando para tansmitirlo a la pantalla principal
 socket.on('a_reproductor_envio_posicion', (posicion) => {
-    /* console.log("Cambiando posicion");
-    console.log(posicion); */
     let posX = window.innerWidth / 2; // Inicializar en el centro de la pantalla
     let posY = window.innerHeight / 2; // Inicializar en el centro de la pantalla
 
     const puntero = document.getElementById("puntero");
 
-    posX = posicion[0];
-    posY = posicion[1];
+    posX = posicion[0]; // Posicion X que se recibe del mando
+    posY = posicion[1]; // Posicion Y que se recibe del mando
 
     puntero.style.left = posX + "px";
     puntero.style.top = posY + "px";
@@ -140,6 +144,7 @@ socket.on('a_reproductor_envio_posicion', (posicion) => {
 });
 
 
+// Función que capta el click que se hace con el puntero del mando
 function clickPuntero() {
     const puntero = document.getElementById("puntero");
     const posX = puntero.offsetLeft;
@@ -149,31 +154,52 @@ function clickPuntero() {
         elementoBajoPuntero.click();
     }
 }
-
+// Recibimos la orden del click con el puntero
 socket.on('a_reproductor_click', () => {
     console.log("click con puntero");
     clickPuntero();
 });
 
+// Código para cerrar la ventana modal del aviso del control parental activo
+$("#denegar, .overlay").on("click", function () {
+    $(".overlay, .modal").removeClass("active");
+});
 
+// Función para reproducir el video seleccionado. Comprueba el control parental.
 function reproducirVideo(id) {
-    $(".cuerpo").hide();
-    $("header").hide();
-    $(".reproductor").show();
-    rep = 1;
     for (var i = 0; i < archivo.length; i++) {
         if (archivo[i].id == id) {
-            document.getElementById("reproductor_video").poster = archivo[i].portada;
-            document.getElementById("reproductor_video").src = archivo[i].src;
-            document.getElementById("reproductor_video").load();
-            document.getElementById("reproductor_video").play();
-
+            if (control_parental === 1 && archivo[i].parental === 1) {
+                // Opcion control parental activado y se intenta acceder a contenido permitido
+                document.getElementById("reproductor_video").poster = archivo[i].portada;
+                document.getElementById("reproductor_video").src = archivo[i].src;
+                document.getElementById("reproductor_video").load();
+                document.getElementById("reproductor_video").play();
+                $(".cuerpo").hide();
+                $("header").hide();
+                $(".reproductor").show();
+                rep = 1;
+            } else if (control_parental === 1 && archivo[i].parental === 0) {
+                // Opcion control parental activado y se intenta acceder a contenido restringido
+                $(".overlay, .modal").addClass("active");
+            } else {
+                // Opcion control parental desactivado, por lo que permite acceder a todo el contenido
+                document.getElementById("reproductor_video").poster = archivo[i].portada;
+                document.getElementById("reproductor_video").src = archivo[i].src;
+                document.getElementById("reproductor_video").load();
+                document.getElementById("reproductor_video").play();
+                $(".cuerpo").hide();
+                $("header").hide();
+                $(".reproductor").show();
+                rep = 1;
+            }
         } else {
             null
         }
     }
 };
 
+// Función para salir del video que estas reproduciendo
 function salirReproVideo() {
     $(".cuerpo").show();
     $("header").show();
@@ -183,7 +209,96 @@ function salirReproVideo() {
     document.getElementById("reproductor_video").poster = "";
     document.getElementById("reproductor_video").src = "";
 };
-
+// recibimos la Función de salir del reproductor
 socket.on('a_reproductor_salir', () => {
     salirReproVideo();
 });
+
+
+// Función que recibe la orden de reproducir un video desde el buscador
+socket.on('a_reproductor_reproducir_bus', (id) => {
+    obtener_pelicula(id);
+});
+
+/* 
+$("#p1").click(
+    function () {
+        reproducir_cancion(1);
+    });
+$("#p2").click(
+    function () {
+        reproducir_cancion(2);
+    });
+$("#p3").click(
+    function () {
+        reproducir_cancion(3);
+    });
+$("#p4").click(
+    function () {
+        reproducir_cancion(4);
+    });
+$("#p5").click(
+    function () {
+        reproducir_cancion(5);
+    });
+$("#r1").click(
+    function () {
+        reproducir_cancion(6);
+    });
+$("#r2").click(
+    function () {
+        reproducir_cancion(7);
+    });
+$("#r3").click(
+    function () {
+        reproducir_cancion(8);
+    });
+$("#r4").click(
+    function () {
+        reproducir_cancion(9);
+    });
+$("#r5").click(
+    function () {
+        reproducir_cancion(10);
+    });
+$("#d1").click(
+    function () {
+        reproducir_cancion(11);
+    });
+$("#d2").click(
+    function () {
+        reproducir_cancion(12);
+    });
+$("#d3").click(
+    function () {
+        reproducir_cancion(13);
+    });
+$("#d4").click(
+    function () {
+        reproducir_cancion(14);
+    });
+$("#d5").click(
+    function () {
+        reproducir_cancion(15);
+    });
+$("#n1").click(
+    function () {
+        reproducir_cancion(16);
+    });
+$("#n2").click(
+    function () {
+        reproducir_cancion(17);
+    });
+$("#n3").click(
+    function () {
+        reproducir_cancion(18);
+    });
+$("#n4").click(
+    function () {
+        reproducir_cancion(19);
+    });
+$("#n5").click(
+    function () {
+        reproducir_cancion(20);
+    });
+ */

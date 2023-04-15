@@ -88,5 +88,34 @@ io.on('connection', (socket) => {
         io.emit('a_reproductor_salir');
 
     });
+
+    // Señal para salir de la reproduccion de video
+    socket.on('a_server_reproducir_bus', (id) => {
+
+        io.emit('a_reproductor_reproducir_bus', id);
+
+    });
+
+    
+    // Señal para salir de la reproduccion de video
+    socket.on('a_server_act_cola', (id) => {
+
+        io.emit('a_archivo_act_cola', id);
+
+    });
+
+    // Señal para salir de la reproduccion de video
+    socket.on('a_server_borrar_cola', () => {
+
+        io.emit('a_archivo_borrar_cola');
+
+    });
+
+    // Señal para salir de la reproduccion de video
+    socket.on('a_server_cambio_parental', (valor) => {
+
+        io.emit('a_archivo_cambio_parental', valor);
+
+    });
 });
 

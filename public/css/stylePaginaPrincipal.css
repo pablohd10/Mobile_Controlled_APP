@@ -114,5 +114,43 @@ a {
     background-color: red;
     border-radius: 50%;
     pointer-events: none; /* Para evitar que el puntero capture eventos del usuario */
-    z-index: 1000000;
+    z-index: 1000000000;
   }
+
+/* Ventana modal del aviso del control parental */
+
+.modal {
+    border-radius: 30px;
+    padding: 5%;
+    color: white;
+    border: 5px solid black;
+    background: #8B4513;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    height: 100px;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s ease;
+}
+
+.modal.active {
+    visibility: visible;
+    z-index: 200000000;
+    opacity: 1;
+}
+
+.btn-cierre {
+    margin-left: 40%;
+    padding: 3%;
+    color: #010536;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.titulo-modal {
+    margin-bottom: 5%;
+}
