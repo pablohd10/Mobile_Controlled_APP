@@ -1,4 +1,5 @@
 // Parental == 1 peliculas para todos los publicos 
+
 let archivo = [
     {
         "nombre": "Titanic",

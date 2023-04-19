@@ -13,6 +13,7 @@ $(".modo_complejo").hide();
 const colaMando = document.querySelector("#lista_cola");
 const busqueda = document.querySelector("#input_bus");
 
+
 // Busqueda
 // Lista con todos los posibles nombres
 let seleccionados = [];
@@ -25,12 +26,13 @@ busqueda.addEventListener("input", () => {
   let fragment = document.createDocumentFragment();
   //recuoera el valor del input y guardalo en una variable
   let elValor = busqueda.value;
+  elValor = elValor.toLowerCase();
   //si hay un valor
   if (elValor.length > 0) {
     // busca en el json si el nombre incluye (o empieza por) el valor
     archivo.forEach(j => {
-
-      if (j.nombre.includes(elValor)) {
+      titulo = j.nombre.toLowerCase();
+      if (titulo.includes(elValor)) {
         // si lo incluye agregalo al array de los seleccionados
         seleccionados.push(j);
       }
@@ -54,6 +56,10 @@ busqueda.addEventListener("input", () => {
         // Aquí colocarías la lógica para añadir a la cola el elemento s
         console.log("Añadir a cola: " + s.nombre);
         socket.emit('a_server_act_cola', s.id);
+        busqueda.value = null;
+        var inputEvent = new InputEvent("input");
+        busqueda.dispatchEvent(inputEvent);
+
       });
       div.appendChild(btnCola);
 
@@ -66,6 +72,9 @@ busqueda.addEventListener("input", () => {
         // Aquí colocarías la lógica para reproducir el elemento s
         console.log("Reproducir: " + s.nombre);
         socket.emit('a_server_reproducir_bus', s.id);
+        busqueda.value = null;
+        var inputEvent = new InputEvent("input");
+        busqueda.dispatchEvent(inputEvent);
       });
       div.appendChild(btnReproducir);
 
@@ -82,6 +91,34 @@ busqueda.addEventListener("input", () => {
     resultado.innerHTML = "";
   }
 });
+
+//A continuacion se añade la busqueda por voz
+const recognition = new webkitSpeechRecognition();
+let mic = document.getElementById("microfono");
+
+recognition.continuous = true;
+recognition.lang = 'es-Es';
+recognition.interimResult = false;
+micro_encendido = false;
+mic.setAttribute("style", "background-image: url('../media/micOn.png');, background-size: 50% 50%;");
+
+
+mic.addEventListener('click', () => {
+  micro_encendido = !micro_encendido
+  if(micro_encendido){
+    recognition.start();
+    mic.setAttribute("style", "background-image: url('../media/micOff.png');, background-size: 50% 50%;");
+  }else{
+    recognition.abort();
+    mic.setAttribute("style", "background-image: url('../media/micOn.png');, background-size: 50% 50%;");
+  }
+});
+
+recognition.onresult = (event)=>{
+  busqueda.value = event.results[event.results.length - 1][0].transcript;
+  var inputEvent = new InputEvent("input");
+  busqueda.dispatchEvent(inputEvent);
+};
 
 
 // Funcion que me añade a cola el video que quiera desde el buscador
@@ -126,7 +163,6 @@ function seleccionModo() {
   switch (seleccion) {
     case "comp_par":
       // Caso del mando complejo con control parental
-      document.getElementById("boton_bus").style.background = "rgb(255, 186, 186)";
       titulo.innerHTML = "Complejo con control parental";
       $(".seleccion_modo").hide();
       $(".modo_simple").hide();
@@ -144,7 +180,6 @@ function seleccionModo() {
     case "comp_spar":
       // Caso del mando complejo con control parental
       titulo.innerHTML = "Complejo sin control parental";
-      document.getElementById("boton_bus").style.background = "rgb(175, 255, 175)";
       $(".seleccion_modo").hide();
       $(".modo_simple").hide();
       $(".modo_complejo").show(); // Muestra el modo complejo

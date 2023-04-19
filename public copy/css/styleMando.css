@@ -233,7 +233,9 @@ header {
 }
 
 /* Código relacionado con el diseño de la barra de búsqueda */
-
+#microfono{
+    min-width: 45px;
+}
 .busqueda {
     width: 80vw;
     margin-left: 10vw;
