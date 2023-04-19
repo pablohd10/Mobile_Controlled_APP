@@ -1,4 +1,15 @@
 $(".reproductor").hide();
+
+login = localStorage.getItem("loginAcc");
+localStorage.setItem("usuarioMostrado", login);
+x = JSON.parse(localStorage.getItem(login+" listaTodosMg"))
+if(x==null){
+    localStorage.setItem(login+" listaTodosMg", JSON.stringify([]));
+}
+
+
+
+
 let rep = 0;
 
 // Obtenemos el elemento (en este caso, una imagen)

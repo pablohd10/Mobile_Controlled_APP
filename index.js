@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Rutas
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'paginaPrincipal.html'));
+    res.sendFile(path.join(__dirname, 'public', 'iniciarSesion.html'));
 });
 
 app.get('/mando', (req, res) => {

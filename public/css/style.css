@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(83, 83, 83);
+    background: linear-gradient(rgb(150, 149, 149), rgb(82,82,82));
     color: white;
     margin: 0;
     padding: 0;
@@ -54,8 +54,7 @@ a{
 .form input[type="name"],
 .form input[type="surname"],
 .form input[type="email"],
-.form input[type="password"],
-.form input[type="submit"] {
+.form input[type="password"]{
     
     padding: 10px;
     font-size: 16px;
@@ -66,12 +65,19 @@ a{
     box-sizing: border-box;
 }
 
-.form input[type="submit"] {
+.form input[type="button"] {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
     background-color: #8B4513;
     color: #fff;
     cursor: pointer;
 }
 
-.form input[type="submit"]:hover {
+.form input[type="button"]:hover {
     background-color: #555;
 }
