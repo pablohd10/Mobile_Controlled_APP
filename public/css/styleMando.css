@@ -90,7 +90,7 @@ header {
 
 
 
-/* Parte de los botones de control */
+/* Parte de los botones de control y desplazamiento */
 
 .modo_complejo {
     margin: 0 0;
@@ -218,6 +218,41 @@ header {
     border: 1px solid rgba(112, 112, 112, 1);
 }
 
+.botones_desplazamiento {
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#btn_arriba {
+    height: 50px;
+    width: 100px;
+
+    background: rgba(112, 112, 112, 1);
+    border-radius: 16px 0 0 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(112, 112, 112, 1);
+}
+
+#btn_abajo {
+    height: 50px;
+    width: 100px;
+
+    background: rgba(112, 112, 112, 1);
+    border-radius: 0 16px 16px 0;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(112, 112, 112, 1);
+}
+
 #puntero {
     position: fixed;
     top: 0;
@@ -233,9 +268,10 @@ header {
 }
 
 /* Código relacionado con el diseño de la barra de búsqueda */
-#microfono{
+#microfono {
     min-width: 45px;
 }
+
 .busqueda {
     width: 80vw;
     margin-left: 10vw;
@@ -463,6 +499,41 @@ header {
 
     background: rgba(112, 112, 112, 1);
     border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(112, 112, 112, 1);
+}
+
+.botones_desplazamiento_s {
+    margin-top: 50px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#btn_arriba_s {
+    height: 100px;
+    width: 150px;
+
+    background: rgba(112, 112, 112, 1);
+    border-radius: 16px 0 0 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(112, 112, 112, 1);
+}
+
+#btn_abajo_s {
+    height: 100px;
+    width: 150px;
+
+    background: rgba(112, 112, 112, 1);
+    border-radius: 0 16px 16px 0;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);

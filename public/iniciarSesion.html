@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="media/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css">
-    <title>Indice</title>
+    <title>Inicio de sesión</title>
 </head>
 
 <body>
-    <div id = "pagina">
-        <section class = "section"> <!-- lo de section esta añadido para meter botones arriba a la derecha, pero los he quitado para la parte de iniciar sesion -->
+    <div id="pagina">
+        <section class="section">
+            <!-- Section añadida en caso de querer añadir botones en la parte de arriba de la pantalla -->
             <H1>Vidpro</H1>
         </section>
     </div>
     <main class="main">
-		<h2>Iniciar sesión</h2>
-		<form class="form">
-			<label for="email">email</label>
+        <h2>Iniciar sesión</h2>
+        <!-- Formulario que captará toda la información del inicio de sesión -->
+        <form class="form">
+            <!-- Email -->
+            <label for="email">email</label>
             <input type="email" id="email" name="email" placeholder="Correo electrónico">
+            <!-- Contraseña -->
             <label for="password">Contraseña</label>
             <input type="password" id="password" name="password" placeholder="Contraseña">
+            <!-- Botón para enviar el formulario -->
             <input type="button" value="Iniciar sesión" onclick="comprobarDatos()">
         </form>
 
+        <!-- En caso de no tener cuenta creada tendrás la opcioó de registrarte -->
         <p>¿No tienes cuenta? <a href="#" onclick="openRegister()">Regístrate</a></p>
     </main>
-    
+
     <script src="/socket.io/socket.io.js" charset="UTF-8"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="js/archivo.js"></script>
     <script src="js/loginRegister.js"></script>
 </body>
+
 </html>

@@ -2,9 +2,9 @@ $(".reproductor").hide();
 
 login = localStorage.getItem("loginAcc");
 localStorage.setItem("usuarioMostrado", login);
-x = JSON.parse(localStorage.getItem(login+" listaTodosMg"))
-if(x==null){
-    localStorage.setItem(login+" listaTodosMg", JSON.stringify([]));
+x = JSON.parse(localStorage.getItem(login + " listaTodosMg"))
+if (x == null) {
+    localStorage.setItem(login + " listaTodosMg", JSON.stringify([]));
 }
 
 
@@ -229,6 +229,23 @@ socket.on('a_reproductor_salir', () => {
 // Función que recibe la orden de reproducir un video desde el buscador
 socket.on('a_reproductor_reproducir_bus', (id) => {
     obtener_pelicula(id);
+});
+
+
+// Señal para desplazar hacia abajo la pantalla principal
+socket.on('a_reproductor_bajar_pantalla', () => {
+    window.scrollBy({
+        top: 100,
+        behavior: 'smooth'
+    });
+});
+
+// Señal para desplazar hacia arriba la pantalla principal
+socket.on('a_reproductor_subir_pantalla', () => {
+    window.scrollBy({
+        top: -100,
+        behavior: 'smooth'
+    });
 });
 
 /* 

@@ -89,7 +89,7 @@ io.on('connection', (socket) => {
 
     });
 
-    // Señal para salir de la reproduccion de video
+    // Señal para reproducir desde la barra de búsqueda
     socket.on('a_server_reproducir_bus', (id) => {
 
         io.emit('a_reproductor_reproducir_bus', id);
@@ -97,25 +97,40 @@ io.on('connection', (socket) => {
     });
 
     
-    // Señal para salir de la reproduccion de video
+    // Señal para actualizar la cola cuando se añada un elemento nuevo
     socket.on('a_server_act_cola', (id) => {
 
         io.emit('a_archivo_act_cola', id);
 
     });
 
-    // Señal para salir de la reproduccion de video
+    // Señal para actualizar la cola cuando se elimine un elemento
     socket.on('a_server_borrar_cola', () => {
 
         io.emit('a_archivo_borrar_cola');
 
     });
 
-    // Señal para salir de la reproduccion de video
+    // Señal para cambiar el valor del control parental de activo a inactivo y viceversa
     socket.on('a_server_cambio_parental', (valor) => {
 
         io.emit('a_archivo_cambio_parental', valor);
 
     });
+
+    // Señal para desplazar la pantalla principal hacia abajo
+    socket.on('a_server_bajar_pantalla', () => {
+
+        io.emit('a_reproductor_bajar_pantalla');
+
+    });
+
+    // Señal para desplazar la pantalla principal hacia arriba
+    socket.on('a_server_subir_pantalla', () => {
+
+        io.emit('a_reproductor_subir_pantalla');
+
+    });
+
 });
 

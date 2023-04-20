@@ -317,6 +317,29 @@ btn_salir_s.addEventListener('click', () => {
   socket.emit('a_server_salir');
 });
 
+// Función para desplazar la pantalla hacia arriba desde el mando complejo
+const btn_arriba = document.getElementById('btn_arriba');
+btn_arriba.addEventListener('click', () => {
+  socket.emit('a_server_subir_pantalla');
+});
+
+// Función para desplazar la pantalla hacia arriba desde el mando simple
+const btn_arriba_s = document.getElementById('btn_arriba_s');
+btn_arriba_s.addEventListener('click', () => {
+  socket.emit('a_server_subir_pantalla');
+});
+
+// Función para desplazar la pantalla hacia abajo desde el mando complejo
+const btn_abajo = document.getElementById('btn_abajo');
+btn_abajo.addEventListener('click', () => {
+  socket.emit('a_server_bajar_pantalla');
+});
+
+// Función para desplazar la pantalla hacia abajo desde el mando simple
+const btn_abajo_s = document.getElementById('btn_abajo_s');
+btn_abajo_s.addEventListener('click', () => {
+  socket.emit('a_server_bajar_pantalla');
+});
 
 
 // Funcionalidad del giroscopio implementado para poder usar el puntero en la pantalla principal
