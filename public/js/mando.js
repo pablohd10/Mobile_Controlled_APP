@@ -105,16 +105,16 @@ mic.setAttribute("style", "background-image: url('../media/micOn.png');, backgro
 
 mic.addEventListener('click', () => {
   micro_encendido = !micro_encendido
-  if(micro_encendido){
+  if (micro_encendido) {
     recognition.start();
     mic.setAttribute("style", "background-image: url('../media/micOff.png');, background-size: 50% 50%;");
-  }else{
+  } else {
     recognition.abort();
     mic.setAttribute("style", "background-image: url('../media/micOn.png');, background-size: 50% 50%;");
   }
 });
 
-recognition.onresult = (event)=>{
+recognition.onresult = (event) => {
   busqueda.value = event.results[event.results.length - 1][0].transcript;
   var inputEvent = new InputEvent("input");
   busqueda.dispatchEvent(inputEvent);
@@ -347,6 +347,8 @@ let gyroscope = new Gyroscope({ frequency: 60 });
 let posX = window.innerWidth / 2; // Inicializar en el centro de la pantalla
 let posY = window.innerHeight / 2; // Inicializar en el centro de la pantalla
 
+let rotacion = 0;
+
 posX = 700 + posX; //Esto esta puesto para ajustar al centro
 posY = 100 + posY; //Esto esta puesto para ajustar al centro
 
@@ -354,7 +356,11 @@ const puntero = document.getElementById("puntero");
 puntero.style.left = posX + "px";
 puntero.style.top = posY + "px";
 
+let puedeEjecutarRotacion = true;
+const tiempoEntreEjecuciones = 1000;
+
 gyroscope.addEventListener("reading", (e) => {
+  /*  PUNTERO  */
   // Calcular nueva posición del puntero
   posY -= 35 * gyroscope.x;
   posX -= 35 * gyroscope.z;
@@ -367,7 +373,65 @@ gyroscope.addEventListener("reading", (e) => {
 
   /* console.log(posicion); */
   socket.emit('a_server_envio_posicion', posicion);
+
+  /*  SIGUIENTE/ANTERIOR VIDEO  */
+  rotacion = gyroscope.y;
+  console.log(rotacion);
+
+  if (rotacion > 7 && puedeEjecutarRotacion) {
+    // Siguiente película
+    console.log("SIGUIENTE");
+    let envio = cambioPelicula();
+    socket.emit('cambiarPelicula', envio);
+
+    // Limpiar la cola existente
+    colaMando.innerHTML = "";
+    // Loop para actualizar la cola
+    for (let i = 0; i < cola.length; i++) {
+      const elem = cola[i][1];
+
+      const colaElement = document.createElement("li");
+      colaElement.classList.add('elem_lista');
+      colaElement.textContent = elem;
+
+      colaMando.appendChild(colaElement);
+    }
+
+    // Desactivar ejecución de rotación
+    puedeEjecutarRotacion = false;
+
+    // Reactivar ejecución después de un tiempo
+    setTimeout(() => {
+      puedeEjecutarRotacion = true;
+    }, tiempoEntreEjecuciones);
+  }
+  else if (rotacion < -7 && puedeEjecutarRotacion) {
+    // Anterior película
+    console.log("ANTERIOR");
+    let envio = cambioPelicula();
+    socket.emit('cambiarPelicula', envio);
+
+    // Desactivar ejecución de rotación
+    puedeEjecutarRotacion = false;
+
+    // Reactivar ejecución después de un tiempo
+    setTimeout(() => {
+      puedeEjecutarRotacion = true;
+    }, tiempoEntreEjecuciones);
+  }
+
 });
+
+
 
 gyroscope.start();
 
+
+const acl = new Accelerometer({ frequency: 60 });
+acl.addEventListener("reading", () => {
+  console.log(`Acceleration along the X-axis ${acl.x}`);
+  console.log(`Acceleration along the Y-axis ${acl.y}`);
+  console.log(`Acceleration along the Z-axis ${acl.z}`);
+});
+
+acl.start();

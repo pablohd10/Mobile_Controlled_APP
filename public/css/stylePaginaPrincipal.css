@@ -74,7 +74,7 @@ a {
     object-fit: contain;
 }
 
-.videos #video-4:hover {
+#noticias .grid-item:hover {
     box-shadow: 0px 0px 50px rgb(213, 81, 81);
 }
 
