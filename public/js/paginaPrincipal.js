@@ -228,6 +228,9 @@ socket.on('a_reproductor_salir', () => {
 
 // Función que recibe la orden de reproducir un video desde el buscador
 socket.on('a_reproductor_reproducir_bus', (id) => {
+    $(".cuerpo").hide();
+    $("header").hide();
+    $(".reproductor").show();
     obtener_pelicula(id);
 });
 
