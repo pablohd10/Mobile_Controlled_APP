@@ -357,7 +357,7 @@ puntero.style.left = posX + "px";
 puntero.style.top = posY + "px";
 
 let puedeEjecutarRotacion = true;
-const tiempoEntreEjecuciones = 1000;
+const espera = 1000; // Para el giroscopio y el acelerómetro
 
 gyroscope.addEventListener("reading", (e) => {
   /*  PUNTERO  */
@@ -376,11 +376,9 @@ gyroscope.addEventListener("reading", (e) => {
 
   /*  SIGUIENTE/ANTERIOR VIDEO  */
   rotacion = gyroscope.y;
-  console.log(rotacion);
 
   if (rotacion > 7 && puedeEjecutarRotacion) {
     // Siguiente película
-    console.log("SIGUIENTE");
     let envio = cambioPelicula();
     socket.emit('cambiarPelicula', envio);
 
@@ -403,11 +401,10 @@ gyroscope.addEventListener("reading", (e) => {
     // Reactivar ejecución después de un tiempo
     setTimeout(() => {
       puedeEjecutarRotacion = true;
-    }, tiempoEntreEjecuciones);
+    }, espera);
   }
   else if (rotacion < -7 && puedeEjecutarRotacion) {
     // Anterior película
-    console.log("ANTERIOR");
     let envio = cambioPelicula();
     socket.emit('cambiarPelicula', envio);
 
@@ -417,21 +414,90 @@ gyroscope.addEventListener("reading", (e) => {
     // Reactivar ejecución después de un tiempo
     setTimeout(() => {
       puedeEjecutarRotacion = true;
-    }, tiempoEntreEjecuciones);
+    }, espera);
   }
-
 });
-
-
 
 gyroscope.start();
 
 
-const acl = new Accelerometer({ frequency: 60 });
-acl.addEventListener("reading", () => {
-  console.log(`Acceleration along the X-axis ${acl.x}`);
-  console.log(`Acceleration along the Y-axis ${acl.y}`);
-  console.log(`Acceleration along the Z-axis ${acl.z}`);
+
+
+const acl2 = new Accelerometer({ frequency: 60 });
+let puedeEjecutarAcelerometro = true;
+
+acl2.addEventListener("reading", () => {
+  if (acl2.x > 10  && puedeEjecutarAcelerometro) {
+    console.log("Efectivamente es hacia derecha");
+    console.log(`Acceleration along the X-axis ${acl2.x}`);
+    socket.emit('subirVol');
+
+    // Desactivar ejecución del acelerometro
+    puedeEjecutarAcelerometro = false;
+
+    // Reactivar después del segundo de espera
+    setTimeout(() => {
+      puedeEjecutarAcelerometro = true;
+    }, espera);
+  }
+  if (acl2.x < -10  && puedeEjecutarAcelerometro) {
+    console.log("Efectivamente es hacia izq");
+    console.log(`Acceleration along the X-axis ${acl2.x}`);
+    socket.emit('bajarVol');
+
+    // Desactivar ejecución del acelerometro
+    puedeEjecutarAcelerometro = false;
+
+    // Reactivar después del segundo de espera
+    setTimeout(() => {
+      puedeEjecutarAcelerometro = true;
+    }, espera);
+  }
+
 });
 
-acl.start();
+acl2.start();
+
+
+/* let ultimoMovimiento = 0;
+const tiempoEspera = 2000; // 2 segundos en milisegundos
+
+
+const acl = new Accelerometer({ frequency: 60 });
+
+let velocidadY = 0;
+let ultimaVelocidadY = 0;
+let tiempoUltimaLectura = 0;
+
+acl.addEventListener("reading", () => {
+  const ahora = Date.now();
+  const tiempoTranscurrido = ahora - tiempoUltimaLectura;
+  tiempoUltimaLectura = ahora;
+
+  // Calcular velocidad en eje Y (en metros por segundo)
+  velocidadY += acl.y * tiempoTranscurrido / 1000;
+  const velocidadMediaY = (velocidadY + ultimaVelocidadY) / 2;
+  ultimaVelocidadY = velocidadY;
+
+  // Detectar movimiento rápido hacia arriba o hacia abajo
+  if (velocidadMediaY > umbralMovimientoRapido) {
+    const tiempoDesdeUltimoMovimiento = ahora - ultimoMovimiento;
+    if (tiempoDesdeUltimoMovimiento > tiempoEspera) {
+      console.log("Movimiento rápido hacia arriba detectado!");
+      // Ejecutar función correspondiente al movimiento hacia arriba
+      // ...
+      ultimoMovimiento = ahora;
+    }
+  } else if (velocidadMediaY < ) {
+    const tiempoDesdeUltimoMovimiento = ahora - ultimoMovimiento;
+    if (tiempoDesdeUltimoMovimiento > tiempoEspera) {
+      console.log("Movimiento rápido hacia abajo detectado!");
+      // Ejecutar función correspondiente al movimiento hacia abajo
+      // ...
+      ultimoMovimiento = ahora;
+    }
+  }
+});
+
+acl.start(); */
+

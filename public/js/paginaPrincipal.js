@@ -7,9 +7,6 @@ if (x == null) {
     localStorage.setItem(login + " listaTodosMg", JSON.stringify([]));
 }
 
-
-
-
 let rep = 0;
 
 
@@ -249,6 +246,44 @@ socket.on('a_reproductor_subir_pantalla', () => {
         behavior: 'smooth'
     });
 });
+
+var listaMg = JSON.parse(localStorage.getItem(login+" listaTodosMg"));
+if (listaMg != null){
+    for (ii=0; ii<20; ii++){
+        var checking = document.getElementById("c"+ii);
+        if(listaMg[ii]){
+            checking.checked = true;
+        }else if(listaMg[ii] == false){
+            checking.checked = false;
+        }
+    }
+}
+listas("a")
+function listas(id){
+    var listaMg = JSON.parse(localStorage.getItem(login+" listaTodosMg"));
+    var checkbo = document.getElementById(id);
+    if(checkbo!=null){
+        checkbo.checked = !checkbo.checked;
+        console.log(checkbo.checked)
+    }
+    if (listaMg == null){
+        listaMg = [];
+    }
+    for (ii=0; ii<20; ii++){
+        var check = document.getElementById("c"+ii);
+        var img = document.getElementById("c"+ii+"Img");
+        if (check.checked){
+            console.log("cambia a normal")
+            listaMg[ii]=true;
+            img.src = "media/like.png"
+        }else { 
+            console.log("cambiaaaa a tachado")
+            img.src = "media/noLike.png"
+            listaMg[ii]=false
+        }
+    }
+    localStorage.setItem(login+" listaTodosMg", JSON.stringify(listaMg));
+}
 
 /* 
 $("#p1").click(

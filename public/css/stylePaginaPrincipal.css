@@ -155,3 +155,30 @@ a {
 .titulo-modal {
     margin-bottom: 5%;
 }
+
+.check {
+    display: flex;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-column-gap: 51px;
+    grid-row-gap: 51px;
+    margin: 51px;
+  }
+  
+  /* Estilos para el checkbox seleccionado */
+
+  input[type=checkbox] {
+    display: none;
+  }
+  
+  input[type=checkbox] + label {  
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+  }
+
+.divC{
+    margin: 0 130px;
+    height: 50px;
+    width: 50px;
+}
