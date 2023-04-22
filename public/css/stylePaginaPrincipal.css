@@ -120,7 +120,7 @@ a {
 
 /* Ventana modal del aviso del control parental */
 
-.modal {
+.modal1 {
     border-radius: 30px;
     padding: 5%;
     color: white;
@@ -137,7 +137,7 @@ a {
     transition: .3s ease;
 }
 
-.modal.active {
+.modal1.active {
     visibility: visible;
     z-index: 200000000;
     opacity: 1;
@@ -156,6 +156,43 @@ a {
     margin-bottom: 5%;
 }
 
+/* Modal del qr */
+
+.boton_qr {
+    background: rgba(255, 255, 255, 0.34);
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 1);
+    padding: 5px;
+}
+
+.modal2 {
+    border-radius: 30px;
+    padding: 5%;
+    color: white;
+    border: 5px solid black;
+    background: #8B4513;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s ease;
+}
+
+.modal2.active {
+    visibility: visible;
+    z-index: 200000000;
+    opacity: 1;
+}
+
+/* Estilos para el checkbox seleccionado */
+
 .check {
     display: flex;
     grid-template-columns: repeat(5, 1fr);
@@ -163,21 +200,19 @@ a {
     grid-column-gap: 51px;
     grid-row-gap: 51px;
     margin: 51px;
-  }
-  
-  /* Estilos para el checkbox seleccionado */
+}
 
-  input[type=checkbox] {
+input[type=checkbox] {
     display: none;
-  }
-  
-  input[type=checkbox] + label {  
+}
+
+input[type=checkbox]+label {
     height: 50px;
     width: 50px;
     display: inline-block;
-  }
+}
 
-.divC{
+.divC {
     margin: 0 130px;
     height: 50px;
     width: 50px;

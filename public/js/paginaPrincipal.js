@@ -285,85 +285,13 @@ function listas(id){
     localStorage.setItem(login+" listaTodosMg", JSON.stringify(listaMg));
 }
 
-/* 
-$("#p1").click(
-    function () {
-        reproducir_cancion(1);
-    });
-$("#p2").click(
-    function () {
-        reproducir_cancion(2);
-    });
-$("#p3").click(
-    function () {
-        reproducir_cancion(3);
-    });
-$("#p4").click(
-    function () {
-        reproducir_cancion(4);
-    });
-$("#p5").click(
-    function () {
-        reproducir_cancion(5);
-    });
-$("#r1").click(
-    function () {
-        reproducir_cancion(6);
-    });
-$("#r2").click(
-    function () {
-        reproducir_cancion(7);
-    });
-$("#r3").click(
-    function () {
-        reproducir_cancion(8);
-    });
-$("#r4").click(
-    function () {
-        reproducir_cancion(9);
-    });
-$("#r5").click(
-    function () {
-        reproducir_cancion(10);
-    });
-$("#d1").click(
-    function () {
-        reproducir_cancion(11);
-    });
-$("#d2").click(
-    function () {
-        reproducir_cancion(12);
-    });
-$("#d3").click(
-    function () {
-        reproducir_cancion(13);
-    });
-$("#d4").click(
-    function () {
-        reproducir_cancion(14);
-    });
-$("#d5").click(
-    function () {
-        reproducir_cancion(15);
-    });
-$("#n1").click(
-    function () {
-        reproducir_cancion(16);
-    });
-$("#n2").click(
-    function () {
-        reproducir_cancion(17);
-    });
-$("#n3").click(
-    function () {
-        reproducir_cancion(18);
-    });
-$("#n4").click(
-    function () {
-        reproducir_cancion(19);
-    });
-$("#n5").click(
-    function () {
-        reproducir_cancion(20);
-    });
- */
+
+// Codigo para e lcodigo QR
+// Cerrar
+$("#denegar, .overlay2").on("click", function () {
+    $(".overlay2, .modal2").removeClass("active");
+});
+// Desplegar
+$(".boton_qr").on("click", function () {
+    $(".overlay2, .modal2").addClass("active");
+});

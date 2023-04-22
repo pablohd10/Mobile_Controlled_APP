@@ -4,6 +4,8 @@ Cosas a tener en cuenta antes de empezar a usar:
 - En ocasiones se necesita hacer click en la pantalla del ordenador
 - Si el puntero se descentra de la pantalla reiniciar la página del mando apuntando al centro de la pantalla
 - Para que funcione se tiene que conectar el móvil por cable y hacer port forwarding al puerto 3000
+- Para acceder a la pagina principal hay que registrarte/iniciar sesión (no hace falta que ni el correo ni el nombre ni nada sea real pero se necesitara este paso)
+- En la esquina derecha de arriba hay un botón que te desplegará una ventana modal mostrando el código qr, código que se podrá escanear con el móvil para llegar a la página del mando
 
 
 Funcionalidades a probar:
