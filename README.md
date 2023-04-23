@@ -6,6 +6,7 @@ Cosas a tener en cuenta antes de empezar a usar:
 - Para que funcione se tiene que conectar el móvil por cable y hacer port forwarding al puerto 3000
 - Para acceder a la pagina principal hay que registrarte/iniciar sesión (no hace falta que ni el correo ni el nombre ni nada sea real pero se necesitara este paso)
 - En la esquina derecha de arriba hay un botón que te desplegará una ventana modal mostrando el código qr, código que se podrá escanear con el móvil para llegar a la página del mando
+- En cuanto a las noticias que en este caso es los único que tiene control parental, hace hacer click con el ordenador saldrá una ventana modal indicando que no se puede accerder pero si se intenta acceder mediante el puntero esta ventana modal no aparecerá a pesar de que igualmente no te deje reproducir el video
 
 
 Funcionalidades a probar:
@@ -21,3 +22,4 @@ Funcionalidades a probar:
 - Modo simple y modo complejo
 - Control parental activo o inactivo (como videos de comprovacion de control parental hemos puesto las noticias a las cuales no se podrá acceder si el control parental está activo)
 - Cambio de volumen mediante acelerómetro (Si se mueve rapidamente el móvil hacia la derecha el volumen de la reproducción de subirá y si se desplaza hacia la izquierda el volumen bajará)
+- Opción de dar me gusta a los videos, diferentes usuarios tendrán diferentes me gusta
