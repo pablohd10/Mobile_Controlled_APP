@@ -295,3 +295,7 @@ $("#denegar, .overlay2").on("click", function () {
 $(".boton_qr").on("click", function () {
     $(".overlay2, .modal2").addClass("active");
 });
+
+// I need that to execute a function when clicked
+
+$(".hola").click

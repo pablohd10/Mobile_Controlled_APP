@@ -20,6 +20,6 @@ Funcionalidades a probar:
 - Buscador (permite añadir a la cola y reproducir directamente desde el buscador)
 - Cola de videos (se mostraran en la parte de abajo del mando y estarán en orden de reproducción, una vez termine de reproducire el video se borrará de la cola)
 - Modo simple y modo complejo
-- Control parental activo o inactivo (como videos de comprovacion de control parental hemos puesto las noticias a las cuales no se podrá acceder si el control parental está activo)
+- Control parental activo o inactivo (como videos de comprobacion de control parental hemos puesto las noticias a las cuales no se podrá acceder si el control parental está activo)
 - Cambio de volumen mediante acelerómetro (Si se mueve rapidamente el móvil hacia la derecha el volumen de la reproducción de subirá y si se desplaza hacia la izquierda el volumen bajará)
 - Opción de dar me gusta a los videos, diferentes usuarios tendrán diferentes me gusta
